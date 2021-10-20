@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic-Tac-Toe</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="name">
+      <div>Player 01</div>
+      <div>Player 02</div>
+    </div>
+
+    <div class="result">
+      <div class="player1-win">0</div>
+      <div class="player2-win">0</div>
+    </div>
+
+    <div class="message" id="message">Player 01's Turn</div>
+
+    <div class="tictactoe-game">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+
+    <div class="overlay" id="overlay">
+      <div class="overlay-text">Game Over!!!</div>
+
+      <div class="btns-grid">
+        <button class="btn btn-restart" id="btn btn-restart">Retart</button>
+        <button class="btn btn-quit" id="btn btn-quit">Quit</button>
+      </div>
+    </div>
+
+    <audio class="audio-click" src="Game_click.mp3"></audio>
+    <audio class="audio-over" src="Game_over.mp3"></audio>
+  </body>
+
+  <script src="main.js"></script>
+</html>
