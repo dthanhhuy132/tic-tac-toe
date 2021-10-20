@@ -11,6 +11,11 @@ let audioOver = document.querySelector(".audio-over");
 let player1Text = document.querySelector(".player1-win");
 let player2Text = document.querySelector(".player2-win");
 
+let modal = document.querySelector(".modal");
+
+let namePlayer1 = "Player01";
+let namePlayer2 = "Player02";
+
 let winCase = [
   [0, 1, 2],
   [3, 4, 5],
@@ -26,7 +31,7 @@ let winArr;
 let player1Win = 0;
 let player2Win = 0;
 
-let currentTurn = "Player 01";
+let currentTurn = namePlayer1;
 
 cells.forEach((cell) => {
   cell.addEventListener("mouseenter", cellHoverIn);
@@ -37,7 +42,7 @@ cells.forEach((cell) => {
 function cellClick() {
   audioClicks.play();
 
-  let currentClass = currentTurn === "Player 01" ? "cross" : "circle";
+  let currentClass = currentTurn === namePlayer1 ? "cross" : "circle";
 
   this.classList.add(currentClass);
   this.classList.remove("circle-hover");
@@ -64,8 +69,8 @@ function cellClick() {
     audioOver.play();
     overlayText.innerText = `${currentTurn} Won`;
 
-    currentTurn === "Player 01" ? (player1Win += 1) : (player2Win += 1);
-    currentTurn === "Player 01"
+    currentTurn === namePlayer1 ? (player1Win += 1) : (player2Win += 1);
+    currentTurn === namePlayer1
       ? (player1Text.innerText = player1Win)
       : (player2Text.innerText = player2Win);
     return;
@@ -73,18 +78,18 @@ function cellClick() {
     let res = Array.from(cells).every((cell) => cell.classList.length === 2);
 
     if (res) {
-      overlayText.innerText = "All of you are stupid";
+      overlayText.innerText = "Tie";
       displayOverlay();
       audioOver.play();
     }
   }
 
-  currentTurn = currentTurn === "Player 01" ? "Player 02" : "Player 01";
+  currentTurn = currentTurn === namePlayer1 ? namePlayer2 : namePlayer1;
   message.innerText = `${currentTurn}'s Turn`;
 }
 
 function cellHoverIn() {
-  let currentClass = currentTurn === "Player 01" ? "cross" : "circle";
+  let currentClass = currentTurn === namePlayer1 ? "cross" : "circle";
   if (this.classList.contains("cross") || this.classList.contains("circle")) {
     this.style.cursor = "not-allowed";
   } else {
@@ -132,3 +137,61 @@ restart.addEventListener("click", function () {
 quit.addEventListener("click", function () {
   window.close();
 });
+
+// Modal
+let nameResult1 = document.querySelector(".name > div:nth-child(1)");
+let nameResult2 = document.querySelector(".name > div:nth-child(2)");
+let body = document.querySelector("body");
+
+console.log(nameResult1);
+console.log(nameResult2);
+
+let isShowModal = true;
+if (isShowModal) {
+  showModal();
+}
+
+let inputEl1 = document.querySelector(".input-name-player1");
+let inputEl2 = document.querySelector(".input-name-player2");
+
+let inputEl1Value = "";
+let inputEl2Value = "";
+
+inputEl1.addEventListener("change", function (e) {
+  e.preventDefault();
+  inputEl1Value = e.target.value;
+});
+inputEl2.addEventListener("change", function (e) {
+  e.preventDefault();
+  inputEl2Value = e.target.value;
+});
+
+if (!isShowModal) {
+  let startModal = document.querySelector(".modal-start");
+  let cancelModal = document.querySelector(".modal-cancel");
+
+  startModal.addEventListener("click", function () {
+    if (inputEl1Value !== "") {
+      message.innerText = `${inputEl1Value}'s Turn`;
+      namePlayer1 = inputEl1Value;
+      nameResult1.innerText = inputEl1Value;
+    }
+    if (inputEl2Value !== "") {
+      namePlayer2 = inputEl2Value;
+      nameResult2.innerText = inputEl2Value;
+    }
+
+    modal.classList.remove("modal-active");
+  });
+
+  cancelModal.addEventListener("click", function () {
+    modal.classList.remove("modal-active");
+    body.classList.remove("dth-modal");
+  });
+}
+
+function showModal() {
+  modal.classList.add("modal-active");
+  isShowModal = false;
+  body.classList.add("dth-modal");
+}

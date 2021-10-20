@@ -11,6 +11,8 @@ body {
   justify-content: center;
   flex-direction: column;
   min-height: 100vh;
+
+  overflow: hidden;
 }
 
 .name {
@@ -180,7 +182,7 @@ body {
 
 
 .overlay .overlay-text {
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 1000;
 
   color: #fff;
@@ -232,6 +234,67 @@ body {
 
 
 
+/* MODAL */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom: 0;
 
+  display: none;
+  background-color: rgba(0,0,0,0.8);
+
+  z-index: 1000;
+}
+
+.modal-active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+
+  transform: scale(0.5);
+  transition: all 0.2s ease-in-out;
+}
+
+
+.dth-modal .modal-content {
+  transform: scale(1);
+}
+
+.modal-content input {
+  border-radius:5px;
+  border: 1px solid grey;
+}
+
+.modal-button {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-button button {
+  width: 50%; 
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.modal-button button:nth-child(1) {
+  background-color: #3498DB;
+}
+
+.modal-button button:nth-child(2) {
+  background-color: #CB4335;
+}
 
 
