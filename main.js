@@ -136,6 +136,7 @@ restart.addEventListener("click", function () {
 
 quit.addEventListener("click", function () {
   window.close();
+  console.log("quit run");
 });
 
 // Modal
